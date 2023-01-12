@@ -8,6 +8,19 @@ const getTalkersJson = async () => {
   return JSON.parse(response);
 };
 
+async function getTalkersId(talkersId) {
+  const response = await getTalkersJson();
+  const talkerId = response.filter(({ id }) => id === talkersId);
+  return talkerId;
+}
+
+function tknGenerator() {
+  const tkn = Math.random().toString().substring(2, 10) + Math.random().toString().substring(2, 10);
+  return tkn;
+}
+
 module.exports = {
   getTalkersJson,
+  getTalkersId,
+  tknGenerator,
  };
