@@ -1,7 +1,7 @@
 {
   "name": "sd-0x-project-talker-manager",
   "version": "1.0.0",
-  "description": "",
+  "description": "Para realizar o projeto, atente-se a cada passo descrito a seguir, e se tiver qualquer dúvida, nos envie por _Slack_! #vqv 🚀",
   "main": "src/index.js",
   "scripts": {
     "test": "jest --runInBand",
@@ -29,5 +29,13 @@
     "nodemon": "2.0.15",
     "nyc": "15.1.0",
     "sinon": "11.1.1"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tryber/sd-024-b-project-talker-manager.git"
+  },
+  "bugs": {
+    "url": "https://github.com/tryber/sd-024-b-project-talker-manager/issues"
+  },
+  "homepage": "https://github.com/tryber/sd-024-b-project-talker-manager#readme"
 }
