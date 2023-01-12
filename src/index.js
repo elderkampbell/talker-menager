@@ -1,5 +1,11 @@
 const express = require('express');
-const { getTalkersJson, tknGenerator } = require('./utils/helpers');
+
+const { 
+  getTalkersJson,
+  tknGenerator,
+  emailValidation,
+  passwordValidation,
+} = require('./utils/helpers');
 
 const app = express();
 app.use(express.json());
@@ -28,11 +34,8 @@ app.get('/talker/:id', async (req, res) => {
   return res.status(HTTP_OK_STATUS).json(talker);
 });
 
-app.post('/login', async (req, res) => {
-  return res.status(HTTP_OK_STATUS).json({
-    token: tknGenerator(),
-  });
-});
+app.post('/login', emailValidation, passwordValidation, async (req, res) => res
+.status(HTTP_OK_STATUS).json({ token: tknGenerator() }));
 
 app.listen(PORT, () => {
   console.log('Online');
