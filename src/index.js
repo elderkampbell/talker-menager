@@ -5,12 +5,20 @@ const {
   tknGenerator,
   emailValidation,
   passwordValidation,
+  tokenValidation,
+  nameValidation,
+  ageValidation,
+  talkValidation,
+  watchedAtValidation,
+  rateValidation,
+  postTalkersJson,
 } = require('./utils/helpers');
 
 const app = express();
 app.use(express.json());
 
 const HTTP_OK_STATUS = 200;
+const CREATED = 201;
 const HTTP_NOT_FOUND_STATUS = 404;
 const PORT = '3000';
 
@@ -32,6 +40,27 @@ app.get('/talker/:id', async (req, res) => {
       message: 'Pessoa palestrante não encontrada' });
   }
   return res.status(HTTP_OK_STATUS).json(talker);
+});
+
+app.post('/talker', tokenValidation,
+nameValidation,
+ageValidation,
+talkValidation,
+watchedAtValidation,
+rateValidation,
+async (req, res) => {
+  const allTalkers = await getTalkersJson();
+  const id = allTalkers.length + 1;
+  const { name, age, talk } = req.body;
+  const newTalker = {
+    id,
+    name,
+    age,
+    talk,
+  };
+  allTalkers.push(newTalker);
+  await postTalkersJson(allTalkers);
+  return res.status(CREATED).send(newTalker);
 });
 
 app.post('/login', emailValidation, passwordValidation, async (req, res) => res
