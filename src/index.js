@@ -38,7 +38,7 @@ app.get('/talker/:id', async (req, res) => {
   const talker = response.find(({ id }) => id === Number(talkerId));
   if (!talker) {
     return res.status(HTTP_NOT_FOUND_STATUS).json({
-      message: 'Pessoa palestrante não encontrada'
+      message: 'Pessoa palestrante não encontrada',
     });
   }
   return res.status(HTTP_OK_STATUS).json(talker);
