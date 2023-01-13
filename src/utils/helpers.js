@@ -132,7 +132,7 @@ const watchedAtValidation = (req, res, next) => {
 
 const rateValidation = (req, res, next) => {
   const { talk: { rate } } = req.body;
-  if (!rate) {
+  if (rate === undefined) {
     return res.status(BAD_REQUEST).send({
       message: 'O campo "rate" é obrigatório',
     });
